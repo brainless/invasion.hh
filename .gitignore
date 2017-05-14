@@ -77,11 +77,11 @@ celerybeat-schedule
 
 # dotenv
 .env
-.venv
 
 # virtualenv
 venv/
 ENV/
+.venv/
 
 # Spyder project settings
 .spyderproject
@@ -93,7 +93,10 @@ ENV/
 frontend/node_modules
 
 .idea/
+app/.idea/
 config.json
 /static/javascript/
 /static/stylesheet/
 .sass-cache/
+
+*.sqlite3
