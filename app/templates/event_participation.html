@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block body_inner %}
+<div class="jumbotron">
+<h1 class="display-4">Your paricipation</h1>
+<p class="lead">Thank you for registerting, here you can see the activities you have selected.<br>
+    Payment details are also provided, with your payment reference.</p>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Pricing</h3>
+        <table class="table">
+          <thead>
+          <tr>
+              <th>Item</th>
+              <th>Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>{{ event.name }}</td>
+              <td>{{ event.price }}</td>
+          </tr>
+          {% for act in activities %}
+          <tr>
+              <td>{{ act.name }}</td>
+              <td>{% if act.price %}{{act.price}}{% else %}0{% endif %}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+              <th>Total</th>
+              <td>{{ total_price }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <a href="{% url 'current_activities' %}" class="btn btn-primary btn-sm">Edit activities</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Payment details</h3>
+        <p>Please use the payment reference <b>{{ invader.payment_reference }}</b> when transfering the money.</p>
+        <h5>PayPal</h5>
+        <ul class="list-group">
+          <li class="list-group-item"><b>Email</b>: isa.burman@gmail.com</li>
+        </ul>
+        <br>
+        <h5>Bank Account</h5>
+        <ul class="list-group">
+          <li class="list-group-item"><b>Name</b>: Isa Burman</li>
+          <li class="list-group-item"><b>IBAN</b>: DE36500105175417497756</li>
+          <li class="list-group-item"><b>BIC</b>: INGDDEFFXXX</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -17,10 +17,14 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from surfers.views import RegistrationView
+from activities.views import SelectActivitiesView
+from events.views import EventParticipationView
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^app/admin/', admin.site.urls),
 
-    url(r'^app/register/', RegistrationView.as_view())
+    url(r'^app/register/', RegistrationView.as_view()),
+    url(r'^app/select-activities/', SelectActivitiesView.as_view(), name='current_activities'),
+    url(r'^app/participation/', EventParticipationView.as_view(), name='current_participation')
 ]
