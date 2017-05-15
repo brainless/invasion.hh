@@ -2,7 +2,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Activity, Invader
+from .models import Activity, Invader, Invasion
 from .forms import SelectActivitiesForm
 
 
@@ -19,7 +19,7 @@ class SelectActivitiesView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['activities'] = Activity.objects.filter(invasion=get_current_invasion())
+        ctx['activities'] = Activity.objects.filter(invasion__default=True)
         return ctx
 
 
@@ -28,7 +28,7 @@ class EventParticipationView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        invasion = get_current_invasion()
+        invasion = Invasion.objects.get(default=True)
         invader = Invader.objects.get(invasion=invasion, surfer=self.request.user)
         ctx['event'] = invasion
         ctx['invader'] = invader
