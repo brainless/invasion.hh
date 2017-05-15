@@ -17,8 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from surfers.views import RegistrationView
-from activities.views import SelectActivitiesView
-from events.views import EventParticipationView
+from events.views import SelectActivitiesView, EventParticipationView
 
 
 urlpatterns = [
