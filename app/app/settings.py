@@ -25,7 +25,7 @@ SECRET_KEY = '!^%cp5ukul5_#@&rl@=&7y068_73a4t!f5om9t*otj*r&beym$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'invasion.brainless.in', 'invasion.hamburg']
 
 
 # Application definition
