@@ -36,6 +36,7 @@ class Activity(models.Model):
     location = models.CharField(max_length=200)
     link = models.URLField()
     price = models.FloatField(blank=True, null=True)
+    person_limit = models.IntegerField(blank=True, null=True)
 
     starts_at = models.DateTimeField()
     ends_at = models.DateTimeField()

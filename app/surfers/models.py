@@ -13,9 +13,9 @@ class Surfer(AbstractUser):
         choices=[(x.alpha_2, x.name) for x in pycountry.countries],
         blank=True
     )
-    facebook_link = models.URLField(blank=True)
-    cs_link = models.URLField(blank=True)
-    bw_link = models.URLField(blank=True)
+    facebook_link = models.URLField(blank=True, verbose_name='Facebook profile link')
+    cs_link = models.URLField(blank=True, verbose_name='CouchSurfing profile link')
+    bw_link = models.URLField(blank=True, verbose_name='BeWelcome profile link')
 
     created_at = models.DateTimeField(auto_now_add=True)
     created_from = models.GenericIPAddressField(null=True)

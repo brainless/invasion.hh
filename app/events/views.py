@@ -22,6 +22,9 @@ class SelectActivitiesView(LoginRequiredMixin, UpdateView):
         ctx['activities'] = Activity.objects.filter(invasion__default=True)
         return ctx
 
+    def form_valid(self):
+        super().save()
+
 
 class EventParticipationView(LoginRequiredMixin, TemplateView):
     template_name = 'event_participation.html'

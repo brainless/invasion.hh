@@ -4,14 +4,14 @@ from .models import Invasion, Invader, Activity
 
 
 class InvasionAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'name', 'price', 'default')
 
 
 admin.site.register(Invasion, InvasionAdmin)
 
 
 class InvaderAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'surfer', 'invasion', 'payment_reference')
 
 
 admin.site.register(Invader, InvaderAdmin)

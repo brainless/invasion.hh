@@ -11,6 +11,10 @@ class RegistrationForm(UserCreationForm):
         super(RegistrationForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.add_input(Submit('submit', 'Register'))
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+        self.fields['email'].required = True
+        self.fields['nationality'].required = True
 
     class Meta:
         model = Surfer
