@@ -28,6 +28,9 @@ class Invader(models.Model):
 
     payment_confirmed_at = models.DateTimeField(blank=True, null=True)
 
+    def has_paid(self):
+        return self.payment_confirmed_at is not None
+
 
 class Activity(models.Model):
     name = models.CharField(max_length=100)
@@ -43,3 +46,6 @@ class Activity(models.Model):
 
     def __str__(self):
         return '{} at {}'.format(self.name, self.invasion.name)
+
+    class Meta:
+        verbose_name_plural = 'activities'

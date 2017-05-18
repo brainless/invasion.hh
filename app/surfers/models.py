@@ -19,3 +19,6 @@ class Surfer(AbstractUser):
 
     created_at = models.DateTimeField(auto_now_add=True)
     created_from = models.GenericIPAddressField(null=True)
+
+    def __str__(self):
+        return '{} {}'.format(self.first_name, self.last_name)

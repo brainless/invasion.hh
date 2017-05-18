@@ -128,3 +128,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/app/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+TIME_ZONE = 'UTC'
