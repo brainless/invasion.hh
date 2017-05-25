@@ -28,6 +28,9 @@ class Invader(models.Model):
 
     payment_confirmed_at = models.DateTimeField(blank=True, null=True)
 
+    def activity_list(self):
+        return ', '.join([x.name for x in self.activities.all()])
+
     def has_paid(self):
         return self.payment_confirmed_at is not None
 

@@ -26,12 +26,12 @@
           {% for act in activities %}
           <tr>
               <td>{{ act.name }}</td>
-              <td>{% if act.price %}{{act.price}}{% else %}0{% endif %}</td>
+              <td>{% if act.price %}EUR {{act.price}}{% else %}0{% endif %}</td>
           </tr>
           {% endfor %}
           <tr>
               <th>Total</th>
-              <td>{{ total_price }}</td>
+              <td>EUR {{ total_price }}</td>
           </tr>
           </tbody>
         </table>
@@ -48,6 +48,8 @@
         <h5>PayPal</h5>
         <ul class="list-group">
           <li class="list-group-item"><b>Email</b>: isa.burman@gmail.com</li>
+          <li class="list-group-item"><b>Link</b>:&nbsp;<a href="https://www.paypal.com/myaccount/transfer/send">PayPal</a></li>
+          <li class="list-group-item"><b>Total amount</b>: EUR {{ paypal_price }} (including PayPal fees)</li>
         </ul>
         <br>
         <h5>Bank Account</h5>
