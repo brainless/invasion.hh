@@ -14,6 +14,11 @@ class SelectActivitiesView(LoginRequiredMixin, UpdateView):
     redirect_field_name = 'redirect_to'
     success_url = '/app/participation/'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def get_object(self):
         return Invader.objects.get(surfer=self.request.user)
 
