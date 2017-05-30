@@ -44,5 +44,5 @@ class EventParticipationView(LoginRequiredMixin, TemplateView):
             if x.price is not None:
                 total += x.price
         ctx['total_price'] = total
-        ctx['paypal_price'] = round(total + (total * 2.9 / 100) + 0.30, 2)
+        ctx['paypal_price'] = round(total + 0.72, 2)
         return ctx
