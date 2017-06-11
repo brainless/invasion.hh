@@ -13,7 +13,7 @@
       <ul class="nav nav-pills float-right">
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
         {% if user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="/app/profile/">Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="/app/dash/">Dash</a></li>
           <li class="nav-item"><a class="nav-link" href="/app/logout/">Logout</a></li>
         {% elif request.path != "/app/login/" %}
           <li class="nav-item"><a class="nav-link" href="/app/login/">Login</a></li>
