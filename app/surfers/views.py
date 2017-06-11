@@ -36,7 +36,7 @@ class RegistrationView(CreateView):
 class LoginView(FormView):
     template_name = 'login.html'
     form_class = LoginForm
-    success_url = '/app/participation/'
+    success_url = '/app/dash/'
 
     def form_valid(self, form):
         user = form.get_user()
