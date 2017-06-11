@@ -1,9 +1,12 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView, UpdateView
 from ipware.ip import get_real_ip
 from django.db import transaction
 from django.contrib.auth import authenticate, login
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import RegistrationForm
+from .forms import RegistrationForm, LoginForm, ProfileForm
 from events.models import Invasion, Invader
 from .models import Surfer
 
@@ -27,3 +30,24 @@ class RegistrationView(CreateView):
             )
             login(self.request, self.object)
             return ret
+
+
+class LoginView(FormView):
+    template_name = 'login.html'
+    form_class = LoginForm
+    success_url = '/app/participation/'
+
+    def form_valid(self, form):
+        user = form.get_user()
+        login(self.request, user)
+        return super().form_valid(form)
+
+
+class ProfileView(LoginRequiredMixin, UpdateView):
+    template_name = 'profile.html'
+    form_class = ProfileForm
+    success_url = '/app/dash/'
+    model = Surfer
+
+    def get_object(self):
+        return self.request.user

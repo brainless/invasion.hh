@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
 
-from surfers.views import RegistrationView
+from surfers.views import RegistrationView, LoginView, ProfileView
 from events.views import SelectActivitiesView, EventParticipationView
 
 
@@ -24,6 +25,10 @@ urlpatterns = [
     url(r'^app/admin/', admin.site.urls),
 
     url(r'^app/register/', RegistrationView.as_view()),
+    url(r'^app/login/', LoginView.as_view()),
+    url(r'^app/profile/', ProfileView.as_view()),
+    url(r'^app/logout/$', LogoutView.as_view(next_page='/')),
+
     url(r'^app/select-activities/', SelectActivitiesView.as_view(), name='current_activities'),
     url(r'^app/participation/', EventParticipationView.as_view(), name='current_participation')
 ]

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body_inner %}
+  <div class="jumbotron">
+    <h1 class="display-4">View/update your profile</h1>
+    <p class="lead">You may update your profile, except your email address.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">{% crispy form %}</div>
+  </div>
+{% endblock %}
