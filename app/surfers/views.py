@@ -1,4 +1,5 @@
 from django.views.generic.edit import CreateView, FormView, UpdateView
+from django.views.generic import TemplateView
 from ipware.ip import get_real_ip
 from django.db import transaction
 from django.contrib.auth import authenticate, login
@@ -51,3 +52,12 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 
     def get_object(self):
         return self.request.user
+
+
+class DashView(LoginRequiredMixin, TemplateView):
+    template_name = 'dash.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['invasions'] = [inv.invasion for inv in Invader.objects.filter(surfer=self.request.user).all()]
+        return ctx

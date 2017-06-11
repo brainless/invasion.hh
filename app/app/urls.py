@@ -17,8 +17,8 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth.views import LogoutView
 
-from surfers.views import RegistrationView, LoginView, ProfileView
-from events.views import SelectActivitiesView, EventParticipationView
+from surfers.views import RegistrationView, LoginView, ProfileView, DashView
+from events.views import SelectActivitiesView, EventParticipationView, ParticipantsView
 
 
 urlpatterns = [
@@ -26,9 +26,13 @@ urlpatterns = [
 
     url(r'^app/register/', RegistrationView.as_view()),
     url(r'^app/login/', LoginView.as_view()),
-    url(r'^app/profile/', ProfileView.as_view()),
     url(r'^app/logout/$', LogoutView.as_view(next_page='/')),
 
+    url(r'^app/profile/', ProfileView.as_view()),
+    url(r'^app/dash/$', DashView.as_view()),
+
     url(r'^app/select-activities/', SelectActivitiesView.as_view(), name='current_activities'),
-    url(r'^app/participation/', EventParticipationView.as_view(), name='current_participation')
+    url(r'^app/participation/', EventParticipationView.as_view(), name='current_participation'),
+
+    url(r'^app/(?P<pk>[0-9]+)/participants/', ParticipantsView.as_view())
 ]

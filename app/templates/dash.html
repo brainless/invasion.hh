@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body_inner %}
+  <div class="jumbotron">
+    <h1 class="display-4">Dashboard</h1>
+    <p class="lead">This is your dashboard for Hamburg Invasion, have a look around :)</p>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
+      <h2>Your invasions</h2>
+      <p>These are Hamburg Invasions in your account (since 2017)</p>
+      <ul>
+      {% for inv in invasions %}
+      	<li>{{ inv.name }}</li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

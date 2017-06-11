@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block body_inner %}
+  <div class="jumbotron">
+    <h1 class="display-4">Participants</h1>
+    <p class="lead">Who are/were the participants of {{ invasion.name }}</p>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Nationality</th>
+            <th>Facebook</th>
+            <th>Couchsurfing</th>
+            <th>BeWelcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for inv in invaders %}
+          <tr>
+            <td>{{ inv.username }}</td>
+            <td>{{ inv.nationality }}</td>
+            <td>{% if inv.facebook_link %}<a href="{{ inv.facebook_link }}" target="_blank">Link</a>{% endif %}</td>
+            <td>{% if inv.cs_link %}<a href="{{ inv.cs_link }}" target="_blank">Link</a>{% endif %}</td>
+            <td>{% if inv.bw_link %}<a href="{{ inv.bw_link }}" target="_blank">Link</a>{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </ul>
+    </div>
+  </div>
+{% endblock %}

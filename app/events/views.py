@@ -46,3 +46,14 @@ class EventParticipationView(LoginRequiredMixin, TemplateView):
         ctx['total_price'] = total
         ctx['paypal_price'] = round(total + 0.72, 2)
         return ctx
+
+
+class ParticipantsView(LoginRequiredMixin, TemplateView):
+    template_name = 'coming.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['invasion'] = Invasion.objects.get(pk=kwargs['pk'])
+        invaders = [inv.surfer for inv in Invader.objects.filter(invasion__id=kwargs.get('pk')).all()]
+        ctx['invaders'] = invaders
+        return ctx
