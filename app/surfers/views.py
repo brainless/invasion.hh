@@ -6,11 +6,41 @@ from django.contrib.auth import authenticate, login
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.mail import send_mail
 
 from .forms import RegistrationForm, LoginForm, ProfileForm
 from events.models import Invasion, Invader
 from .models import Surfer
 
+
+welcome_message = '''
+Halo!
+Thank you for registering with Hamburg Invasion 2017.
+
+Please remember to select your tours and complete your registration by transfering the fees.
+To login to your account please go to:
+https://www.invasion.hamburg/app/login/
+
+Your username is {username}
+
+--------------
+Please transfer the registration fee and tour fees (if applicable) earliest possible to either of the following:
+=PayPal=
+http://paypal.me/IsaBurman
+
+=Bank=
+Name: Isa Burman
+IBAN: DE36500105175417497756
+BIC: INGDDEFFXXX
+
+Your payment reference is:
+{payment_reference}
+--------------
+
+We look forward to seeing you in Hamburg this July because it's all about you :-)
+Cheers!
+- The Hamburg Invasion team
+'''
 
 class RegistrationView(CreateView):
     template_name = 'registration.html'
@@ -24,10 +54,20 @@ class RegistrationView(CreateView):
 
         with transaction.atomic():
             ret = super().form_valid(form)
-            Invader.objects.create(
+            invader = Invader.objects.create(
                 surfer=self.object,
                 invasion=invasion,
                 created_from=get_real_ip(self.request)
+            )
+            send_mail(
+                'Welcome to Hamburg Invasion 2017!',
+                welcome_message.format(
+                    username=self.object.username,
+                    payment_reference=invader.payment_reference
+                ),
+                'hello@invasion.hamburg',
+                [self.object.email],
+                fail_silently=False,
             )
             login(self.request, self.object)
             return ret
