@@ -18,6 +18,8 @@ Halo!
 Thank you for registering with Hamburg Invasion 2017.
 
 Please remember to select your tours and complete your registration by transfering the fees.
+The online payment will be closing on Sunday the 23rd July.
+
 To login to your account please go to:
 https://www.invasion.hamburg/app/login/
 
