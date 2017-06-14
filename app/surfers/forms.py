@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import authenticate
+from django.contrib.auth.backends import ModelBackend
 
 from .models import Surfer
 
@@ -43,6 +44,19 @@ class LoginForm(forms.Form):
         self.helper = FormHelper(self)
         self.helper.add_input(Submit('submit', _('Login')))
 
+    def user_can_authenticate(self, user):
+        is_active = getattr(user, 'is_active', None)
+        return is_active or is_active is None
+
+    def authenticate_by_email(self, email, password):
+        try:
+            user = Surfer.objects.get(email=email)
+        except Surfer.DoesNotExist:
+            pass
+        else:
+            if user.check_password(password) and self.user_can_authenticate(user):
+                return user
+
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
@@ -50,7 +64,7 @@ class LoginForm(forms.Form):
         if username is not None and password:
             self.user_cache = authenticate(username=username, password=password)
             if self.user_cache is None:
-                self.user_cache = authenticate(email=username, password=password)
+                self.user_cache = self.authenticate_by_email(email=username, password=password)
                 if self.user_cache is None:
                     raise forms.ValidationError(
                         _('Username/email and password do not match')
