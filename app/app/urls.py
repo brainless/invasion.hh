@@ -33,6 +33,7 @@ urlpatterns = [
 
     url(r'^app/select-activities/', SelectActivitiesView.as_view(), name='current_activities'),
     url(r'^app/participation/', EventParticipationView.as_view(), name='current_participation'),
+    url(r'^app/(?P<pk>[0-9]+)/participation/', EventParticipationView.as_view(), name='current_participation'),
 
     url(r'^app/(?P<pk>[0-9]+)/participants/', ParticipantsView.as_view())
 ]

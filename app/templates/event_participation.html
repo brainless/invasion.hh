@@ -25,7 +25,7 @@
           </tr>
           {% for act in activities %}
           <tr>
-              <td>{{ act.name }}</td>
+              <td>Activity: {{ act.name }}</td>
               <td>{% if act.price %}EUR {{act.price}}{% else %}0{% endif %}</td>
           </tr>
           {% endfor %}
@@ -35,7 +35,9 @@
           </tr>
           </tbody>
         </table>
-        <a href="{% url 'current_activities' %}" class="btn btn-primary btn-sm">Edit activities</a>
+        {% if not invader.payment_confirmed_at %}
+          <a href="{% url 'current_activities' %}" class="btn btn-primary btn-sm">Edit activities</a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -44,20 +46,25 @@
     <div class="card">
       <div class="card-block">
         <h3 class="card-title">Payment details</h3>
-        <p>Please use the payment reference <b>{{ invader.payment_reference }}</b> when transfering the money.</p>
-        <h5>PayPal</h5>
-        <ul class="list-group">
-          <li class="list-group-item"><b>Email</b>: isa.burman@gmail.com</li>
-          <li class="list-group-item"><b>Link</b>:&nbsp;<a href="http://paypal.me/IsaBurman">PayPal</a></li>
-          <li class="list-group-item"><b>Total amount</b>: EUR {{ paypal_price }} (including PayPal fees)</li>
-        </ul>
-        <br>
-        <h5>Bank Account</h5>
-        <ul class="list-group">
-          <li class="list-group-item"><b>Name</b>: Isa Burman</li>
-          <li class="list-group-item"><b>IBAN</b>: DE36500105175417497756</li>
-          <li class="list-group-item"><b>BIC</b>: INGDDEFFXXX</li>
-        </ul>
+        {% if invader.payment_confirmed_at %}
+          We received a payment with your reference code <b>{{ invader.payment_reference }}</b>.
+          Thank you!
+        {% else %}
+          <p>Please use the payment reference <b>{{ invader.payment_reference }}</b> when transfering the money.</p>
+          <h5>PayPal</h5>
+          <ul class="list-group">
+            <li class="list-group-item"><b>Email</b>: isa.burman@gmail.com</li>
+            <li class="list-group-item"><b>Link</b>:&nbsp;<a href="http://paypal.me/IsaBurman">PayPal</a></li>
+            <li class="list-group-item"><b>Total amount</b>: EUR {{ paypal_price }} (including PayPal fees)</li>
+          </ul>
+          <br>
+          <h5>Bank Account</h5>
+          <ul class="list-group">
+            <li class="list-group-item"><b>Name</b>: Isa Burman</li>
+            <li class="list-group-item"><b>IBAN</b>: DE36500105175417497756</li>
+            <li class="list-group-item"><b>BIC</b>: INGDDEFFXXX</li>
+          </ul>
+        {% endif %}
       </div>
     </div>
   </div>

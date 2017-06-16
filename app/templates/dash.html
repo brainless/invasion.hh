@@ -12,7 +12,11 @@
       <h2>Your invasions</h2>
       <p>These are Hamburg Invasions in your account (since 2017)</p>
       <table class="table table-striped table-bordered">
-        <thead><tr><th>Name</th><th>Your participation</th><th>Who is coming?</th></tr></thead>
+        <thead><tr>
+          <th>Name</th>
+          <th>Your participation</th>
+          <th>Who is coming?</th>
+        </tr></thead>
         <tbody>
           {% for inv in invasions %}
             <tr><td>{{ inv.name }}</td>

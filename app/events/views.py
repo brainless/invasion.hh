@@ -33,7 +33,10 @@ class EventParticipationView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        invasion = Invasion.objects.get(default=True)
+        if kwargs.get('pk', None):
+            invasion = Invasion.objects.get(pk=kwargs['pk'])
+        else:
+            invasion = Invasion.objects.get(default=True)
         invader = Invader.objects.get(invasion=invasion, surfer=self.request.user)
         ctx['event'] = invasion
         ctx['invader'] = invader
