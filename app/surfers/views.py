@@ -14,7 +14,7 @@ from .models import Surfer
 
 
 welcome_message = '''
-Halo!
+Hallo!
 Thank you for registering with Hamburg Invasion 2017.
 
 Please remember to select your tours and complete your registration by transfering the fees.
