@@ -17,7 +17,7 @@ Hallo!
 Hope you are doing great and gearing up for the Hamburg Invasion (July 28 - 30, 2017).
 
 You are just a single step away from confirming your registration for the event.
-You have already selected your activities, kudos! Now all you need to do is complete the payment.
+You have already selected your activities, congrats! Now all you need to do is complete the payment.
 
 --------------
 Please transfer the fees earliest possible to either of the following:
@@ -40,6 +40,8 @@ https://www.invasion.hamburg/app/login/
 
 Your username is {username}
 --------------
+
+Please notice, that the online payment is available only until coming Sunday the 23rd July. If the online payment hasn't reached our accounts on time, your booked spot on Saturday tour will be unbooked and again available at registration desk on Friday the 28th July. The attendance fee upon arrival is 15€ instead of 10€ so we kindly recommend that you use the online payment.
 
 We look forward to seeing you in Hamburg this July because it's all about you :-)
 Cheers!
