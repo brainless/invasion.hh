@@ -1,6 +1,8 @@
 import datetime
+import csv
 from django.contrib import admin
 from django.core.mail import send_mail
+from django.http import HttpResponse
 
 from .models import Invasion, Invader, Activity
 
@@ -51,7 +53,7 @@ Cheers!
 
 class InvaderAdmin(admin.ModelAdmin):
     list_display = ('id', 'surfer', 'surfer_email', 'invasion', 'payment_reference', 'has_paid', 'activity_list')
-    actions = ('mark_paid', 'send_payment_reminder')
+    actions = ('mark_paid', 'send_payment_reminder', 'download_as_csv')
     search_fields = ('surfer__first_name', 'surfer__last_name', 'surfer__email', 'surfer__username',
                      'payment_reference')
 
@@ -94,6 +96,22 @@ class InvaderAdmin(admin.ModelAdmin):
         else:
             message_bit = "%s invaders were" % invaders_count
         self.message_user(request, "%s successfully sent a payment reminder." % message_bit)
+
+    def download_as_csv(self, request, queryset):
+        fields = ('ID', 'Surfer', 'Email', 'Payment reference', 'Paid on', 'Activities')
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=invaders.csv'
+        writer = csv.writer(response)
+        writer.writerow(list(fields))
+
+        for invader in queryset.all():
+            surfer = invader.surfer
+            row = [invader.id, '%s %s' % (surfer.first_name, surfer.last_name),
+                   surfer.email, invader.payment_reference,
+                   invader.payment_confirmed_at.strftime('%d/%m/%Y') if invader.payment_confirmed_at else '-',
+                   ', '.join([x.name for x in invader.activities.all()])]
+            writer.writerow(row)
+        return response
 
 
 admin.site.register(Invader, InvaderAdmin)
