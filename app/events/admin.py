@@ -101,7 +101,7 @@ class InvaderAdmin(admin.ModelAdmin):
         fields = ('ID', 'Surfer', 'Email', 'Payment reference', 'Paid on', 'Activities')
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename=invaders.csv'
-        writer = csv.writer(response, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
+        writer = csv.writer(response, delimiter=';', quotechar='"', quoting=csv.QUOTE_ALL)
         writer.writerow(list(fields))
 
         for invader in queryset.all():
