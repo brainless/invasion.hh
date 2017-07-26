@@ -42,7 +42,7 @@ class EventParticipationView(LoginRequiredMixin, TemplateView):
         ctx['invader'] = invader
         ctx['activities'] = invader.activities.all()
 
-        total = invasion.price
+        total = invasion.price + 5
         for x in invader.activities.all():
             if x.price is not None:
                 total += x.price

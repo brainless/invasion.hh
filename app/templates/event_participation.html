@@ -50,7 +50,7 @@
           We received a payment with your reference code <b>{{ invader.payment_reference }}</b>.
           Thank you!
         {% else %}
-          <p>Please use the payment reference <b>{{ invader.payment_reference }}</b> when transfering the money.</p>
+          <!--p>Please use the payment reference <b>{{ invader.payment_reference }}</b> when transfering the money.</p>
           <h5>PayPal</h5>
           <ul class="list-group">
             <li class="list-group-item"><b>Email</b>: isa.burman@gmail.com</li>
@@ -63,7 +63,9 @@
             <li class="list-group-item"><b>Name</b>: Isa Burman</li>
             <li class="list-group-item"><b>IBAN</b>: DE36500105175417497756</li>
             <li class="list-group-item"><b>BIC</b>: INGDDEFFXXX</li>
-          </ul>
+            <li class="list-group-item"><b>Total amount</b>: EUR {{ total_price }}</li>
+          </ul-->
+          Online payment is now closed, you can pay EUR {{ total_price }} at the registration desk on Thursday or Friday.
         {% endif %}
       </div>
     </div>
