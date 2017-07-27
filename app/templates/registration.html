@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{# load crispy_forms_tags #}
 {% block body_inner %}
   <div class="jumbotron">
     <h1 class="display-4">Register for Hamburg Invasion</h1>
-    <p class="lead">Our registration process is pretty simple. Fill out the following form, select the activities you
-    want to participate in (next form) and then pay for your adventure (PayPal or Bank transfer).</p>
+    <!--p class="lead">Our registration process is pretty simple. Fill out the following form, select the activities you
+    want to participate in (next form) and then pay for your adventure (PayPal or Bank transfer).</p-->
+    <p class="lead">Our registration for Invation 2017 has closed. Please register at the registration desk
+    at the venue on Thursday (July 27, 2017) and Friday (July 28, 2017).</p>
   </div>
 
   <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">{% crispy form %}</div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">{# crispy form #}</div>
   </div>
 {% endblock %}
